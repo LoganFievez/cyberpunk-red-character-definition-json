@@ -1,0 +1,1440 @@
+{
+  "$schema": "https://json-schema.org/draft-07/schema",
+  "type": "array",
+  "title": "Personnages",
+  "description": "La liste des personnages.",
+  "required": [],
+  "items": {
+    "title": "Personnage",
+    "description": "La définition du personnage utilisé pour le jeu de rôle Cyberpunk RED.",
+    "type": "object",
+    "required": [
+      "pseudo",
+      "role",
+      "carac",
+      "competences",
+      "materiel"
+    ],
+    "properties": {
+      "pseudo": {
+        "type": "string",
+        "title": "Pseudo",
+        "description": "Nom du personnage."
+      },
+      "role": {
+        "type": "object",
+        "title": "Rôle",
+        "description": "Rôle utilisé pour le personnage. Cela va définir sa capacité. Au début d'une campagne Cyberpunk RED, les personnages joueurs commencent au rang 4",
+        "required": [
+          "nom",
+          "capacite",
+          "rang"
+        ],
+        "properties": {
+          "nom": {
+            "type": "string",
+            "title": "Nom du rôle",
+            "description": "Nom du rôle utilisé pour le personnage.",
+            "enum": [
+              "Rockeur",
+              "Solo",
+              "Netrunner",
+              "Techie",
+              "Medtech",
+              "Média",
+              "Corporatiste",
+              "Justicier",
+              "Fixer",
+              "Nomade"
+            ]
+          },
+          "capacite": {
+            "type": "string",
+            "title": "Capacite du rôle",
+            "description": "Capacite du rôle utilisé pour le personnage."
+          },
+          "rang": {
+            "type": "number",
+            "title": "Rang",
+            "description": "Rang/niveau de la capacité du personnage. [1-10]",
+            "minimum": 1,
+            "maximum": 10
+          }
+        },
+        "allOf": [
+          {
+            "if": {
+              "properties": {
+                "nom": {
+                  "const": "Rockeur"
+                }
+              }
+            },
+            "then": {
+              "properties": {
+                "capacite": {
+                  "const": "Charisme Irrésistible"
+                }
+              }
+            }
+          },
+          {
+            "if": {
+              "properties": {
+                "nom": {
+                  "const": "Solo"
+                }
+              }
+            },
+            "then": {
+              "properties": {
+                "capacite": {
+                  "const": "Conscience Tactique"
+                }
+              }
+            }
+          },
+          {
+            "if": {
+              "properties": {
+                "nom": {
+                  "const": "Netrunner"
+                }
+              }
+            },
+            "then": {
+              "properties": {
+                "capacite": {
+                  "const": "Interface"
+                }
+              }
+            }
+          },
+          {
+            "if": {
+              "properties": {
+                "nom": {
+                  "const": "Techie"
+                }
+              }
+            },
+            "then": {
+              "properties": {
+                "capacite": {
+                  "const": "Bricoleur"
+                }
+              }
+            }
+          },
+          {
+            "if": {
+              "properties": {
+                "nom": {
+                  "const": "Medtech"
+                }
+              }
+            },
+            "then": {
+              "properties": {
+                "capacite": {
+                  "const": "Médecine"
+                }
+              }
+            }
+          },
+          {
+            "if": {
+              "properties": {
+                "nom": {
+                  "const": "Média"
+                }
+              }
+            },
+            "then": {
+              "properties": {
+                "capacite": {
+                  "const": "Crédibilité"
+                }
+              }
+            }
+          },
+          {
+            "if": {
+              "properties": {
+                "nom": {
+                  "const": "Corporatiste"
+                }
+              }
+            },
+            "then": {
+              "properties": {
+                "capacite": {
+                  "const": "Travail d'équipe"
+                }
+              }
+            }
+          },
+          {
+            "if": {
+              "properties": {
+                "nom": {
+                  "const": "Justicier"
+                }
+              }
+            },
+            "then": {
+              "properties": {
+                "capacite": {
+                  "const": "Renforts"
+                }
+              }
+            }
+          },
+          {
+            "if": {
+              "properties": {
+                "nom": {
+                  "const": "Fixer"
+                }
+              }
+            },
+            "then": {
+              "properties": {
+                "capacite": {
+                  "const": "Intermédiaire"
+                }
+              }
+            }
+          },
+          {
+            "if": {
+              "properties": {
+                "nom": {
+                  "const": "Nomade"
+                }
+              }
+            },
+            "then": {
+              "properties": {
+                "capacite": {
+                  "const": "Moto"
+                }
+              }
+            }
+          }
+        ]
+      },
+      "carac": {
+        "type": "object",
+        "title": "Caractéristique",
+        "description": "Il s'agit de l'ensemble des caractéristiques du personnage. Elles sont fixées dès la création du personnage et ne pourront pas être augmentée sauf si un implant le permet (Ex. +2 COR avec une armure sous-cutannée).",
+        "required": [
+          "INT",
+          "REF",
+          "DEX",
+          "TECH",
+          "PRES",
+          "VOL",
+          "CHA",
+          "MOUV",
+          "COR",
+          "EMP"
+        ],
+        "properties": {
+          "INT": {
+            "title": "Intelligence",
+            "description": "L'intelligence du personnage principalement utilisée pour les compétences nécéssitant de la réflexion ou de la concentration.",
+            "$ref": "#/$defs/carac"
+          },
+          "REF": {
+            "title": "Réflexe",
+            "description": "Les réflexes du personnage utilisés pour le tir, le lancer d'objets et la conduite des véhicules.",
+            "$ref": "#/$defs/carac"
+          },
+          "DEX": {
+            "title": "Dextérité",
+            "description": "La dextérité est souvent utilisée pour tout ce qui demande un effort physique.",
+            "$ref": "#/$defs/carac"
+          },
+          "TECH": {
+            "title": "Technique",
+            "description": "L'abilité du personnage à employer du matériel technique ou nécessitant de la technique (Ex. arts).",
+            "$ref": "#/$defs/carac"
+          },
+          "PRES": {
+            "title": "Prestance",
+            "description": "L'aptitude à impressionner les gens.",
+            "$ref": "#/$defs/carac"
+          },
+          "VOL": {
+            "title": "Volonté",
+            "description": "Concerne la détermination et la sang-froid",
+            "$ref": "#/$defs/carac"
+          },
+          "CHA": {
+            "title": "Chance",
+            "description": "Point de chance utilisable pour améliorer un jet lancé au préalable. Renouvelable par session.",
+            "$ref": "#/$defs/carac"
+          },
+          "MOUV": {
+            "title": "Mouvement",
+            "description": "Capacité à se déplacer dans un environnement donné. Utilisé principalement lors des combats.",
+            "$ref": "#/$defs/carac"
+          },
+          "COR": {
+            "title": "Corps",
+            "description": "Décrit le corps du personnage, sa capacité à encaisser les coups.",
+            "$ref": "#/$defs/carac"
+          },
+          "EMP": {
+            "title": "Empathie",
+            "description": "L'empathie est utilisée pour tout ce qui est relatif au psychologique et à l'humanité.",
+            "$ref": "#/$defs/carac"
+          }
+        }
+      },
+      "competences": {
+        "type": "object",
+        "title": "Compétences",
+        "description": "Il s'agit des compétences utilisable par le personnage. (si le niveau de la compétence est supérieur à zéro)",
+        "properties": {
+          "controle": {
+            "type": "object",
+            "title": "",
+            "description": "",
+            "required": [
+              "conduite",
+              "equitation",
+              "piloteAir",
+              "piloteMer"
+            ],
+            "properties": {
+              "conduite": {
+                "title": "",
+                "description": "",
+                "$ref": "#/$defs/competence"
+              },
+              "equitation": {
+                "title": "",
+                "description": "",
+                "$ref": "#/$defs/competence"
+              },
+              "piloteAir": {
+                "title": "",
+                "description": "",
+                "$ref": "#/$defs/competence"
+              },
+              "piloteMer": {
+                "title": "",
+                "description": "",
+                "$ref": "#/$defs/competence"
+              }
+            }
+          },
+          "combat": {
+            "type": "object",
+            "title": "",
+            "description": "",
+            "required": [
+              "melee",
+              "martial",
+              "bagarre",
+              "esquive"
+            ],
+            "properties": {
+              "melee": {
+                "title": "",
+                "description": "",
+                "$ref": "#/$defs/competence"
+              },
+              "martial": {
+                "title": "",
+                "description": "",
+                "$ref": "#/$defs/competence"
+              },
+              "bagarre": {
+                "title": "",
+                "description": "",
+                "$ref": "#/$defs/competenceObligatoire"
+              },
+              "esquive": {
+                "title": "",
+                "description": "",
+                "$ref": "#/$defs/competenceObligatoire"
+              }
+            }
+          },
+          "corps": {
+            "type": "object",
+            "title": "",
+            "description": "",
+            "required": [
+              "athletisme",
+              "contorsion",
+              "danse",
+              "discretion",
+              "endurance",
+              "resistance"
+            ],
+            "properties": {
+              "athletisme": {
+                "title": "",
+                "description": "",
+                "$ref": "#/$defs/competenceObligatoire"
+              },
+              "contorsion": {
+                "title": "",
+                "description": "",
+                "$ref": "#/$defs/competence"
+              },
+              "danse": {
+                "title": "",
+                "description": "",
+                "$ref": "#/$defs/competence"
+              },
+              "discretion": {
+                "title": "",
+                "description": "",
+                "$ref": "#/$defs/competenceObligatoire"
+              },
+              "endurance": {
+                "title": "",
+                "description": "",
+                "$ref": "#/$defs/competence"
+              },
+              "resistance": {
+                "title": "",
+                "description": "",
+                "$ref": "#/$defs/competence"
+              }
+            }
+          },
+          "education": {
+            "type": "object",
+            "title": "",
+            "description": "",
+            "required": [
+              "bibliotheque",
+              "bureaucratie",
+              "composition",
+              "comptabilite",
+              "connaissance",
+              "criminologie",
+              "cryptographie",
+              "deduction",
+              "dressage",
+              "gestion",
+              "jeux",
+              "guide",
+              "langue",
+              "science",
+              "survie",
+              "tactique"
+            ],
+            "properties": {
+              "bibliotheque": {
+                "title": "",
+                "description": "",
+                "$ref": "#/$defs/competence"
+              },
+              "bureaucratie": {
+                "title": "",
+                "description": "",
+                "$ref": "#/$defs/competence"
+              },
+              "composition": {
+                "title": "",
+                "description": "",
+                "$ref": "#/$defs/competence"
+              },
+              "comptabilite": {
+                "title": "",
+                "description": "",
+                "$ref": "#/$defs/competence"
+              },
+              "connaissance": {
+                "title": "",
+                "description": "",
+                "$ref": "#/$defs/competenceObligatoire"
+              },
+              "criminologie": {
+                "title": "",
+                "description": "",
+                "$ref": "#/$defs/competence"
+              },
+              "cryptographie": {
+                "title": "",
+                "description": "",
+                "$ref": "#/$defs/competence"
+              },
+              "deduction": {
+                "title": "",
+                "description": "",
+                "$ref": "#/$defs/competence"
+              },
+              "dressage": {
+                "title": "",
+                "description": "",
+                "$ref": "#/$defs/competence"
+              },
+              "gestion": {
+                "title": "",
+                "description": "",
+                "$ref": "#/$defs/competence"
+              },
+              "jeux": {
+                "title": "",
+                "description": "",
+                "$ref": "#/$defs/competence"
+              },
+              "guide": {
+                "type": "array",
+                "title": "",
+                "description": "",
+                "minItems": 1,
+                "contains": {
+                  "type": "object",
+                  "properties": {
+                    "nom": {
+                      "type": "string",
+                      "const": "Quartier d'origine"
+                    },
+                    "niveau": {
+                      "type": "number",
+                      "minimum": 2,
+                      "maximum": 10
+                    }
+                  }
+                },
+                "items": {
+                  "type": "object",
+                  "title": "",
+                  "description": "",
+                  "properties": {
+                    "nom": {
+                      "type": "string",
+                      "title": "",
+                      "description": ""
+                    },
+                    "niveau": {
+                      "title": "",
+                      "description": "",
+                      "$ref": "#/$defs/competence"
+                    }
+                  }
+                }
+              },
+              "langue": {
+                "type": "array",
+                "title": "",
+                "description": "",
+                "minItems": 2,
+                "contains": {
+                  "type": "object",
+                  "allOf": [
+                    {
+                      "if": {
+                        "properties": {
+                          "nom": {
+                            "type": "string",
+                            "const": "Argot"
+                          }
+                        }
+                      },
+                      "then": {
+                        "properties": {
+                          "niveau": {
+                            "type": "number",
+                            "minimum": 2,
+                            "maximum": 10
+                          }
+                        }
+                      }
+                    },
+                    {
+                      "if": {
+                        "properties": {
+                          "nom": {
+                            "type": "string"
+                          }
+                        }
+                      },
+                      "then": {
+                        "properties": {
+                          "niveau": {
+                            "type": "number",
+                            "minimum": 4,
+                            "maximum": 10
+                          }
+                        }
+                      }
+                    }
+                  ]
+                },
+                "items": {
+                  "type": "object",
+                  "title": "",
+                  "description": "",
+                  "required": [
+                    "nom",
+                    "niveau"
+                  ],
+                  "properties": {
+                    "nom": {
+                      "type": "string",
+                      "title": "",
+                      "description": ""
+                    },
+                    "niveau": {
+                      "title": "",
+                      "description": "",
+                      "$ref": "#/$defs/competence"
+                    }
+                  }
+                }
+              },
+              "science": {
+                "type": "array",
+                "title": "",
+                "description": "",
+                "items": {
+                  "type": "object",
+                  "title": "",
+                  "description": "",
+                  "required": [
+                    "nom",
+                    "niveau"
+                  ],
+                  "properties": {
+                    "nom": {
+                      "type": "string",
+                      "title": "",
+                      "description": ""
+                    },
+                    "niveau": {
+                      "title": "",
+                      "description": "",
+                      "$ref": "#/$defs/competence"
+                    }
+                  }
+                }
+              },
+              "survie": {
+                "title": "",
+                "description": "",
+                "$ref": "#/$defs/competence"
+              },
+              "tactique": {
+                "title": "",
+                "description": "",
+                "$ref": "#/$defs/competence"
+              }
+            }
+          },
+          "representation": {
+            "type": "object",
+            "title": "",
+            "description": "",
+            "required": [
+              "instrument",
+              "acteur"
+            ],
+            "properties": {
+              "instrument": {
+                "type": "array",
+                "title": "",
+                "description": "",
+                "items": {
+                  "type": "object",
+                  "title": "",
+                  "description": "",
+                  "required": [
+                    "nom",
+                    "niveau"
+                  ],
+                  "properties": {
+                    "nom": {
+                      "type": "string",
+                      "title": "",
+                      "description": ""
+                    },
+                    "niveau": {
+                      "title": "",
+                      "description": "",
+                      "$ref": "#/$defs/competence"
+                    }
+                  }
+                }
+              },
+              "acteur": {
+                "title": "",
+                "description": "",
+                "$ref": "#/$defs/competence"
+              }
+            }
+          },
+          "sociabilite": {
+            "type": "object",
+            "title": "",
+            "description": "",
+            "required": [
+              "connaissanceRue",
+              "conversation",
+              "corruption",
+              "habillement",
+              "interrogatoire",
+              "look",
+              "negoce",
+              "persuasion",
+              "psychologie"
+            ],
+            "properties": {
+              "connaissanceRue": {
+                "title": "",
+                "description": "",
+                "$ref": "#/$defs/competence"
+              },
+              "conversation": {
+                "title": "",
+                "description": "",
+                "$ref": "#/$defs/competenceObligatoire"
+              },
+              "corruption": {
+                "title": "",
+                "description": "",
+                "$ref": "#/$defs/competence"
+              },
+              "habillement": {
+                "title": "",
+                "description": "",
+                "$ref": "#/$defs/competence"
+              },
+              "interrogatoire": {
+                "title": "",
+                "description": "",
+                "$ref": "#/$defs/competence"
+              },
+              "look": {
+                "title": "",
+                "description": "",
+                "$ref": "#/$defs/competence"
+              },
+              "negoce": {
+                "title": "",
+                "description": "",
+                "$ref": "#/$defs/competence"
+              },
+              "persuasion": {
+                "title": "",
+                "description": "",
+                "$ref": "#/$defs/competenceObligatoire"
+              },
+              "psychologie": {
+                "title": "",
+                "description": "",
+                "$ref": "#/$defs/competenceObligatoire"
+              }
+            }
+          },
+          "technique": {
+            "type": "object",
+            "title": "",
+            "description": "",
+            "required": [
+              "aerotech",
+              "armurerie",
+              "arts",
+              "assistanceMed",
+              "contrefacon",
+              "crochetage",
+              "cybertech",
+              "electronique",
+              "explosifs",
+              "maritech",
+              "photos",
+              "pickpocket",
+              "premiersSecours",
+              "securiteElectronique",
+              "terratech"
+            ],
+            "properties": {
+              "aerotech": {
+                "title": "",
+                "description": "",
+                "$ref": "#/$defs/competence"
+              },
+              "armurerie": {
+                "title": "",
+                "description": "",
+                "$ref": "#/$defs/competence"
+              },
+              "arts": {
+                "title": "",
+                "description": "",
+                "$ref": "#/$defs/competence"
+              },
+              "assistanceMed": {
+                "title": "",
+                "description": "",
+                "$ref": "#/$defs/competence"
+              },
+              "contrefacon": {
+                "title": "",
+                "description": "",
+                "$ref": "#/$defs/competence"
+              },
+              "crochetage": {
+                "title": "",
+                "description": "",
+                "$ref": "#/$defs/competence"
+              },
+              "cybertech": {
+                "title": "",
+                "description": "",
+                "$ref": "#/$defs/competence"
+              },
+              "electronique": {
+                "title": "",
+                "description": "",
+                "$ref": "#/$defs/competence"
+              },
+              "explosifs": {
+                "title": "",
+                "description": "",
+                "$ref": "#/$defs/competence"
+              },
+              "maritech": {
+                "title": "",
+                "description": "",
+                "$ref": "#/$defs/competence"
+              },
+              "photos": {
+                "title": "",
+                "description": "",
+                "$ref": "#/$defs/competence"
+              },
+              "pickpocket": {
+                "title": "",
+                "description": "",
+                "$ref": "#/$defs/competence"
+              },
+              "premiersSecours": {
+                "title": "",
+                "description": "",
+                "$ref": "#/$defs/competenceObligatoire"
+              },
+              "securiteElectronique": {
+                "title": "",
+                "description": "",
+                "$ref": "#/$defs/competence"
+              },
+              "terratech": {
+                "title": "",
+                "description": "",
+                "$ref": "#/$defs/competence"
+              }
+            }
+          },
+          "tir": {
+            "type": "object",
+            "title": "",
+            "description": "",
+            "required": [
+              "assaut",
+              "lourd",
+              "pistolet",
+              "arc",
+              "automatique"
+            ],
+            "properties": {
+              "assaut": {
+                "title": "",
+                "description": "",
+                "$ref": "#/$defs/competence"
+              },
+              "lourd": {
+                "title": "",
+                "description": "",
+                "$ref": "#/$defs/competence"
+              },
+              "pistolet": {
+                "title": "",
+                "description": "",
+                "$ref": "#/$defs/competence"
+              },
+              "arc": {
+                "title": "",
+                "description": "",
+                "$ref": "#/$defs/competence"
+              },
+              "automatique": {
+                "title": "",
+                "description": "",
+                "$ref": "#/$defs/competence"
+              }
+            }
+          },
+          "vigilance": {
+            "type": "object",
+            "title": "",
+            "description": "",
+            "required": [
+              "concentration",
+              "dissimulation",
+              "lectureLevre",
+              "perception",
+              "pistage"
+            ],
+            "properties": {
+              "concentration": {
+                "title": "",
+                "description": "",
+                "$ref": "#/$defs/competenceObligatoire"
+              },
+              "dissimulation": {
+                "title": "",
+                "description": "",
+                "$ref": "#/$defs/competence"
+              },
+              "lectureLevre": {
+                "title": "",
+                "description": "",
+                "$ref": "#/$defs/competence"
+              },
+              "perception": {
+                "title": "",
+                "description": "",
+                "$ref": "#/$defs/competenceObligatoire"
+              },
+              "pistage": {
+                "title": "",
+                "description": "",
+                "$ref": "#/$defs/competence"
+              }
+            }
+          }
+        }
+      },
+      "parcours": {
+        "type": "object",
+        "title": "",
+        "description": "",
+        "required": [
+          "origineCulture",
+          "personnalite",
+          "tenue",
+          "coiffure",
+          "accessoire",
+          "valeurFondamentale",
+          "gens",
+          "quiImportant",
+          "quoiImportant",
+          "origineFamille",
+          "envFamille",
+          "criseFamille",
+          "but",
+          "amis",
+          "amours",
+          "ennemis",
+          "role"
+        ],
+        "properties": {
+          "origineCulture": {
+            "type": "string",
+            "title": "Origine Culturel",
+            "description": "D'où vient le personnage."
+          },
+          "personnalite": {
+            "type": "string",
+            "title": "Personnalité",
+            "description": "Quel type de personnalité le personnage possède."
+          },
+          "tenue": {
+            "type": "string",
+            "title": "Tenue",
+            "description": "Le type de tenue que porte le personnage. Le style a son importance."
+          },
+          "coiffure": {
+            "type": "string",
+            "title": "Coiffure",
+            "description": "La coiffure du personnage."
+          },
+          "accessoire": {
+            "type": "string",
+            "title": "Accessoire fétiche.",
+            "description": "Quel est son accessoire favoris."
+          },
+          "valeurFondamentale": {
+            "type": "string",
+            "title": "Valeur fondamentale",
+            "description": "Quels sont les valeurs fondamentales qui animent le personnage."
+          },
+          "gens": {
+            "type": "string",
+            "title": "Les gens",
+            "description": "Que pense le personnage des gens en général."
+          },
+          "quiImportant": {
+            "type": "string",
+            "title": "Qui",
+            "description": "Qui est le plus important aux yeux du personnage."
+          },
+          "quoiImportant": {
+            "type": "string",
+            "title": "Quoi",
+            "description": "Qu'est ce qui est le plus important aux yeux du personnage."
+          },
+          "origineFamille": {
+            "type": "string",
+            "title": "Origine familiale",
+            "description": "Quelles sont les origines familiales du personnage."
+          },
+          "envFamille": {
+            "type": "string",
+            "title": "Environnement familiale",
+            "description": "Dans quel environnement familiale le personnage a grandi."
+          },
+          "criseFamille": {
+            "type": "string",
+            "title": "Crise familiale",
+            "description": "Quelle crise familiale le personnage a subi durant sa vie."
+          },
+          "but": {
+            "type": "string",
+            "title": "But",
+            "description": "Le but du personnage qu'il veut atteindre avant de terminer sa vie."
+          },
+          "amis": {
+            "type": "array",
+            "title": "Amis",
+            "description": "La liste des amis du personnages. (description obligatoires, nom factice)",
+            "items": {
+              "type": "string"
+            }
+          },
+          "amours": {
+            "type": "array",
+            "title": "Tragédies amoureuses",
+            "description": "La liste des tragédies amoureuses que le personnage a rencontré dans sa vie.",
+            "items": {
+              "type": "string"
+            }
+          },
+          "ennemis": {
+            "type": "array",
+            "title": "Ennemis",
+            "description": "La liste des personnes qui en veulent personnellement au personnage.",
+            "items": {
+              "type": "object",
+              "title": "Ennemi",
+              "description": "La description de l'ennemi et de ses motivations.",
+              "required": [
+                "qui",
+                "pourquoi",
+                "soutien",
+                "vengeance"
+              ],
+              "properties": {
+                "qui": {
+                  "type": "string",
+                  "title": "Qui?",
+                  "description": "Qui est cette personne par rapport au personnage."
+                },
+                "pourquoi": {
+                  "type": "string",
+                  "title": "Pourquoi?",
+                  "description": "Pourquoi y a-t-il cette rancoeur entre les deux individus."
+                },
+                "soutien": {
+                  "type": "string",
+                  "title": "Qui le soutient?",
+                  "description": "Qui sont les alliés qui soutienne l'ennemi."
+                },
+                "vengeance": {
+                  "type": "string",
+                  "title": "Vengeance?",
+                  "description": "Que se passera-t-il quand le personnage croisera cette personne?"
+                }
+              }
+            }
+          },
+          "role": {
+            "type": "array",
+            "title": "Parcours du rôle",
+            "description": "L'ensemble du parcours spécifique au rôle",
+            "items": {
+              "type": "string"
+            }
+          }
+        }
+      },
+      "materiel": {
+        "type": "object",
+        "title": "",
+        "description": "",
+        "required": [
+          "armes",
+          "armures",
+          "equipements",
+          "vetements",
+          "cyberimplants"
+        ],
+        "properties": {
+          "armes": {
+            "type": "array",
+            "title": "",
+            "description": "",
+            "items": {
+              "type": "object",
+              "title": "",
+              "description": "",
+              "required": [
+                "nom",
+                "degats",
+                "munition",
+                "attParRound",
+                "main",
+                "dissimulation",
+                "prix"
+              ],
+              "properties": {
+                "nom": {
+                  "type": "string",
+                  "title": "",
+                  "description": ""
+                },
+                "degats": {
+                  "type": "string",
+                  "title": "",
+                  "description": ""
+                },
+                "munition": {
+                  "type": "number",
+                  "title": "",
+                  "description": ""
+                },
+                "attParRound": {
+                  "type": "number",
+                  "title": "",
+                  "description": ""
+                },
+                "main": {
+                  "type": "number",
+                  "title": "",
+                  "description": ""
+                },
+                "dissimulation": {
+                  "type": "boolean",
+                  "title": "",
+                  "description": ""
+                },
+                "prix": {
+                  "$ref": "#/$defs/prix"
+                }
+              }
+            }
+          },
+          "armures": {
+            "type": "object",
+            "title": "",
+            "description": "",
+            "properties": {
+              "tete": {
+                "$ref": "#/$defs/armure"
+              },
+              "corps": {
+                "$ref": "#/$defs/armure"
+              },
+              "bouclier": {
+                "type": "object",
+                "title": "Bouclier",
+                "description": "Définition du bouclier.",
+                "required": [
+                  "type",
+                  "PS",
+                  "prix"
+                ],
+                "properties": {
+                  "type": {
+                    "type": "string",
+                    "title": "",
+                    "description": "",
+                    "enum": [
+                      "Bouclier balistique",
+                      "Cadavre"
+                    ]
+                  },
+                  "PS": {
+                    "type": "number",
+                    "title": "",
+                    "description": ""
+                  },
+                  "prix": {
+                    "$ref": "#/$defs/prix"
+                  }
+                }
+              }
+            }
+          },
+          "equipements": {
+            "type": "array",
+            "title": "",
+            "description": "",
+            "items": {
+              "type": "object",
+              "title": "",
+              "description": "",
+              "required": [
+                "nom",
+                "description",
+                "prix"
+              ],
+              "properties": {
+                "nom": {
+                  "type": "string",
+                  "title": "",
+                  "description": ""
+                },
+                "description": {
+                  "type": "string",
+                  "title": "",
+                  "description": ""
+                },
+                "prix": {
+                  "$ref": "#/$defs/prix"
+                }
+              }
+            }
+          },
+          "vetements": {
+            "type": "array",
+            "title": "",
+            "description": "",
+            "items": {
+              "type": "object",
+              "title": "",
+              "description": "",
+              "required": [
+                "nom",
+                "description",
+                "prix"
+              ],
+              "properties": {
+                "nom": {
+                  "type": "string",
+                  "title": "",
+                  "description": ""
+                },
+                "description": {
+                  "type": "string",
+                  "title": "",
+                  "description": ""
+                },
+                "prix": {
+                  "$ref": "#/$defs/prix"
+                }
+              }
+            }
+          },
+          "cyberimplants": {
+            "type": "object",
+            "title": "Cyberimplants",
+            "description": "Liste des cyberimplants par emplacement.",
+            "required": [
+              "fashion",
+              "neural",
+              "oeilGauche",
+              "oeilDroit",
+              "audio",
+              "interne",
+              "externe",
+              "brasGauche",
+              "brasDroit",
+              "jambeGauche",
+              "jambeDroite",
+              "cyborg"
+            ],
+            "properties": {
+              "fashion": {
+                "title": "Cyberimplants Fashion",
+                "$ref": "#/$defs/cyberimplants"
+              },
+              "neural": {
+                "title": "Cyberimplants Neuraux",
+                "$ref": "#/$defs/cyberimplants"
+              },
+              "oeilGauche": {
+                "title": "Cyberimplants de l'oeil gauche",
+                "$ref": "#/$defs/cyberimplants"
+              },
+              "oeilDroit": {
+                "title": "Cyberimplants de l'oeil droit",
+                "$ref": "#/$defs/cyberimplants"
+              },
+              "audio": {
+                "title": "Cyberimplants audios",
+                "$ref": "#/$defs/cyberimplants"
+              },
+              "interne": {
+                "title": "Cyberimplants internes",
+                "$ref": "#/$defs/cyberimplants"
+              },
+              "externe": {
+                "title": "Cyberimplants externes",
+                "$ref": "#/$defs/cyberimplants"
+              },
+              "brasGauche": {
+                "title": "Cyberimplants du bras gauche",
+                "$ref": "#/$defs/cyberimplants"
+              },
+              "brasDroit": {
+                "title": "Cyberimplants du bras droit",
+                "$ref": "#/$defs/cyberimplants"
+              },
+              "jambeGauche": {
+                "title": "Cyberimplants de la jambe gauche",
+                "$ref": "#/$defs/cyberimplants"
+              },
+              "jambeDroite": {
+                "title": "Cyberimplants de la jambe droite",
+                "$ref": "#/$defs/cyberimplants"
+              },
+              "cyborg": {
+                "title": "Cyberimplants cyborg",
+                "$ref": "#/$defs/cyberimplants"
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "$defs": {
+    "carac": {
+      "type": "number",
+      "minimum": 1,
+      "maximum": 10
+    },
+    "competence": {
+      "type": "number",
+      "minimum": 0,
+      "maximum": 10
+    },
+    "competenceObligatoire": {
+      "type": "number",
+      "minimum": 2,
+      "maximum": 10
+    },
+    "prix": {
+      "type": "number",
+      "title": "Prix",
+      "description": "Prix de l'objet.",
+      "enum": [
+        10,
+        20,
+        50,
+        100,
+        500,
+        1000,
+        5000,
+        10000
+      ]
+    },
+    "armure": {
+      "type": "object",
+      "title": "Armure",
+      "description": "Définition de la pièce d'armure.",
+      "required": [
+        "type",
+        "PA",
+        "penalite",
+        "prix"
+      ],
+      "properties": {
+        "type": {
+          "type": "string",
+          "title": "Type d'armure",
+          "description": "",
+          "enum": [
+            "Cuir",
+            "Kevlar",
+            "Tenue pare-balles légère",
+            "Combinaison connectée",
+            "Tenue pare-balles moyenne",
+            "Tenue pare-balles lourde",
+            "Flak",
+            "Metalgear"
+          ]
+        },
+        "PA": {
+          "type": "number",
+          "title": "Point d'armure",
+          "description": ""
+        },
+        "penalite": {
+          "type": "string",
+          "title": "Pénalité",
+          "description": ""
+        },
+        "prix": {
+          "$ref": "#/$defs/prix"
+        }
+      }
+    },
+    "installation": {
+      "type": "string",
+      "title": "Lieu d'installation",
+      "description": "Lieu où a été installé l'implant.",
+      "enum": [
+        "-",
+        "Boutique",
+        "Centre médical",
+        "Hôpital"
+      ]
+    },
+    "PH": {
+      "type": "number",
+      "title": "Perte d'humanité",
+      "description": "Quantité d'humanité perdue dû à l'installation de l'implant."
+    },
+    "cyberimplant": {
+      "type": "object",
+      "title": "Cyberimplant",
+      "description": "",
+      "required": [
+        "nom",
+        "description",
+        "installation",
+        "prix",
+        "PH"
+      ],
+      "properties": {
+        "nom": {
+          "type": "string",
+          "title": "Nom",
+          "description": "Nom du cyberimplant."
+        },
+        "installation": {
+          "$ref": "#/$defs/installation"
+        },
+        "description": {
+          "type": "string",
+          "title": "Description",
+          "description": "Description du cyberimplant."
+        },
+        "prix": {
+          "$ref": "#/$defs/prix"
+        },
+        "PH": {
+          "$ref": "#/$defs/PH"
+        }
+      }
+    },
+    "cyberimplants": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/cyberimplant"
+      }
+    }
+  }
+}

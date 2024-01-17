@@ -1,0 +1,166 @@
+[
+  {
+    "pseudo": "Julien",
+    "role": {
+      "nom": "Solo",
+      "capacite": "Conscience Tactique",
+      "rang": 4
+    },
+    "carac": {
+      "INT": 6,
+      "REF": 4,
+      "DEX": 8,
+      "TECH": 5,
+      "PRES": 6,
+      "VOL": 6,
+      "CHA": 5,
+      "MOUV": 8,
+      "COR": 6,
+      "EMP": 8
+    },
+    "competences": {
+      "controle": {
+        "conduite": 0,
+        "equitation": 0,
+        "piloteAir": 0,
+        "piloteMer": 0
+      },
+      "combat": {
+        "melee": 6,
+        "martial": 6,
+        "bagarre": 6,
+        "esquive": 6
+      },
+      "corps": {
+        "athletisme": 6,
+        "contorsion": 0,
+        "danse": 0,
+        "discretion": 2,
+        "endurance": 0,
+        "resistance": 6
+      },
+      "education": {
+        "bibliotheque": 0,
+        "bureaucratie": 0,
+        "composition": 0,
+        "comptabilite": 0,
+        "connaissance": 2,
+        "criminologie": 0,
+        "cryptographie": 0,
+        "deduction": 0,
+        "dressage": 0,
+        "gestion": 0,
+        "jeux": 0,
+        "guide": [
+          {
+            "nom": "Quartier d'origine",
+            "niveau": 2
+          }
+        ],
+        "langue": [
+          {
+            "nom": "Argot",
+            "niveau": 3
+          },
+          {
+            "nom": "Coréen",
+            "niveau": 4
+          }
+        ],
+        "science": [],
+        "survie": 0,
+        "tactique": 6
+      },
+      "representation": {
+        "instrument": [],
+        "acteur": 0
+      },
+      "sociabilite": {
+        "connaissanceRue": 0,
+        "conversation": 2,
+        "corruption": 0,
+        "habillement": 0,
+        "interrogatoire": 6,
+        "look": 0,
+        "negoce": 0,
+        "persuasion": 2,
+        "psychologie": 2
+      },
+      "technique": {
+        "aerotech": 0,
+        "armurerie": 0,
+        "arts": 0,
+        "assistanceMed": 0,
+        "contrefacon": 0,
+        "crochetage": 0,
+        "cybertech": 0,
+        "electronique": 0,
+        "explosifs": 0,
+        "maritech": 0,
+        "photos": 0,
+        "pickpocket": 0,
+        "premiersSecours": 6,
+        "securiteElectronique": 0,
+        "terratech": 0
+      },
+      "tir": {
+        "assaut": 0,
+        "lourd": 0,
+        "pistolet": 6,
+        "arc": 0,
+        "automatique": 0
+      },
+      "vigilance": {
+        "concentration": 2,
+        "dissimulation": 0,
+        "lectureLevre": 0,
+        "perception": 6,
+        "pistage": 3
+      }
+    },
+    "parcours": {
+      "origineCulture": "Asie de l'est",
+      "personnalite": "Maniaque, pointilleux et nerveux",
+      "tenue": "Haute couture",
+      "coiffure": "Courts et bien coiffés",
+      "accessoire": "Tatouage",
+      "valeurFondamentale": "Famille",
+      "gens": "J'élimine les gens qui me barrent la route",
+      "quiImportant": "Un mentor (Maitre Kawazi)",
+      "quoiImportant": "Arme (Katana, offert par le maitre)",
+      "origineFamille": "Gang",
+      "envFamille": "Abonné dans la rue puis recueilli par le mentor dans un gratte ciel de luxe.",
+      "criseFamille": "Votre famille a été tuée. Vous êtes le seul survivant.",
+      "but": "Monter dans la hiérarchie de la triade.",
+      "amis": [],
+      "amours": [],
+      "ennemis": [],
+      "role": [
+        "Type: Garde du corps d'un gros bonnet de la triade.",
+        "Principe moral: Vous êtes prêt à outrepasser les règles (et la loi) pour finir le taff.",
+        "Terrain: La ville entière.",
+        "Ennemi: Un justicier corrompu ou qui vous croit coupable d'un délit."
+      ]
+    },
+    "materiel": {
+      "armes": [],
+      "armures": {},
+      "equipements": [],
+      "vetements": [],
+      "cyberimplants": {
+        "fashion": [],
+        "neural": [],
+        "oeilGauche": [],
+        "oeilDroit": [],
+        "audio": [],
+        "interne": [],
+        "externe": [],
+        "brasGauche": [],
+        "brasDroit": [],
+        "jambeGauche": [],
+        "jambeDroite": [],
+        "cyborg": []
+      }
+    }
+  }
+]

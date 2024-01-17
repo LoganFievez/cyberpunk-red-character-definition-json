@@ -1,0 +1,8 @@
+{
+  "json.schemas": [
+    {
+      "fileMatch": ["/*cyberpunk_chars.json"],
+      "url": "./cyberpunk_chars_schema.json"
+    }
+  ]
+}
